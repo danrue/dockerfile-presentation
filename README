@@ -1,4 +1,14 @@
-Abby Fuller, AWS Evangalist, Creating Effective Images
+This repo is based on a 5 minute presentation which itself was inspired by Abby
+Fuller's Dockercon 2017 "Creating Effective Images" talk.
+
+Run the following three commands while making the changes between the
+Dockerfiles:
+
+```sh
+    docker build -t pyjokes .
+    docker run pyjokes
+    docker images pyjokes
+```
 
 FROM ubuntu:16.04
 
