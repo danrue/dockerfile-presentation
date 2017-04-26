@@ -1,0 +1,7 @@
+FROM ubuntu:16.04
+
+RUN apt-get update
+RUN apt-get install -y cowsay python3 python3-pip --no-install-recommends
+RUN pip3 install pyjokes
+
+CMD pyjoke | /usr/games/cowsay -f stegosaurus
