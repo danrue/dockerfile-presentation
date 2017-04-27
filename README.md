@@ -12,6 +12,9 @@ Dockerfiles:
 
 ## Dockerfile.1
 
+Initial Dockerfile. Runs "pyjoke" and pipes the output to cowsay -f
+stegosaurus. Fun!
+
 ```sh
 FROM ubuntu:16.04
 
@@ -28,6 +31,8 @@ pyjokes             latest              4c5a96439b92        About a minute ago  
 
 ## Dockerfile.2
 
+Dockerfile.1 was pretty big. Can we reduce it?
+
 ```sh
 4c4
 < RUN apt-get install -y cowsay python3 python3-pip
@@ -41,6 +46,8 @@ pyjokes             latest              5926b27d9d60        About a minute ago  
 
 ## Dockerfile.3
 
+Let's rm some more unnecessary things. What happens when you remove things in a new layer from a previous layer?
+
 ```sh
 4a5
 > RUN rm -rf /var/lib/apt/lists/*
@@ -51,6 +58,11 @@ pyjokes             latest              2286d8846753        About a minute ago  
 ```
 
 ## Dockerfile.4
+
+Dockerfile.3 removed files but didn't reduce the image size because it was in a
+new layer. Combine layers to resolve. Also, `apt-get update` should always be
+on the same line as `apt-get install` - otherwise the sources may become out of
+date over time.
 
 ```sh
 3,5c3,5
@@ -68,6 +80,8 @@ pyjokes             latest              fbee4f9746d0        About a minute ago  
 ```
 
 ## Dockerfile.5
+
+To really get the image down, try python's alpine linux container. No cowsay :(
 
 ```sh
 FROM python:3.6-alpine
